@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { isContext } from "vm";
 
 Vue.use(Vuex);
 
@@ -20,10 +21,17 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-    reducePrice(state, reduceBy) {
+    reducePrice(state, payload) {
       state.products.forEach(p => {
-        p.price -= reduceBy;
+        p.price -= payload;
       });
+    }
+  },
+  actions: {
+    reducePrice(contex, payload) {
+      setTimeout(function() {
+        contex.commit("reducePrice", payload);
+      }, 3000);
     }
   }
 });

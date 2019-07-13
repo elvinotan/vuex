@@ -5,7 +5,7 @@
       <li v-for="product in salesProduct" :key="product.name">
         <p>{{ product.name }}, Harga Rp.{{ product.price }}</p>
       </li>
-      <button @click="reducePrice">Reduce Price By 1</button>
+      <button @click="reducePrice(1000)">Reduce Price By 1</button>
     </ul>
   </div>
 </template>
@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    reducePrice() {
-      this.$store.commit("reducePrice", 1000);
+    reducePrice(amount) {
+      this.$store.dispatch("reducePrice", amount);
     }
   }
 };
