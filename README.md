@@ -9,8 +9,29 @@ Bila kita tidak menggunakan Vuex, untuk transfer data dari parent ke child harus
 Bila kita sudah menggunakan Vuex, komunikasi antar component menjadi sgt mudah, dari c1 tinggal mutation data ke store, dan dari c2 tinggal getter data dari store</br>
 ![Vuex](https://github.com/elvinotan/vuex/blob/master/images/vuex.png)
 
+Untuk memulai sample Vuex kita harus setting enviroment
+Install vue cli
+
+```
+npm install -g vue-cli
 ```
 
+Buat project vuex
+
+```
+vue init webpack-simple vuex
+```
+
+Install package
+
+```
+npm install
+```
+
+Jalankan Server
+
+```
+npm run dev
 ```
 
 # Vuex Tutorial #2 - A Simple Vue App
