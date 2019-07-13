@@ -10,5 +10,12 @@ export const store = new Vuex.Store({
       { name: "Semangka", price: 15000 },
       { name: "Jambu", price: 18000 }
     ]
+  },
+  getters: {
+    salesProduct(state) {
+      return state.products.map(p => {
+        return { name: "**" + p.name + "**", price: p.price / 2 };
+      });
+    }
   }
 });

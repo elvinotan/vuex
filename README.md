@@ -204,8 +204,49 @@ p {
 
 # Vuex Tutorial #5 - Getters
 
+Sebenarnya kita dapat meng-access state dalam store secara langsung, layaknya this.$store.state.products</br>
+Namun ada kalanya kita mau meng-access data tersebut yang telah di manipulasi tanpa mengubah data original, untuk hal ini kita menggunakan getters</br>
+Untuk membuat getters kita menambahkannya pada block getters, kemudian menambahkan function yang selalu menerima state sebagai argument</br>
+Untuk memanggil getters kita menggunaan statement this.$store.getters.{name function}</br>
+
+```
+store.js
+import Vue from "vue";
+import Vuex from "vuex";
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  state: {
+    products: [
+      { name: "Mangga", price: 20000 },
+      { name: "Semangka", price: 15000 },
+      { name: "Jambu", price: 18000 }
+    ]
+  },
+  getters: {
+    salesProduct(state) {
+      return state.products.map(p => {
+        return { name: "**" + p.name + "**", price: p.price / 2 };
+      });
+    }
+  }
+});
 ```
 
+```
+<script>
+  export default {
+    computed: {
+      products() {
+        return this.$store.state.products;
+      },
+      salesProduct() {
+        return this.$store.getters.salesProduct;
+      }
+    }
+  };
+</script>
 ```
 
 # Vuex Tutorial #6 - Mutations
