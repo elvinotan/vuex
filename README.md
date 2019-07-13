@@ -251,8 +251,51 @@ export const store = new Vuex.Store({
 
 # Vuex Tutorial #6 - Mutations
 
+Untuk melakukan manipulasi data original yang ada di Store kita menggunakan mutations</br>
+Dilarang keras untuk melakukan perubahan data original secara langsung, karena akan menyulitakan tracing siapa yang melakukan perubahan (gunakanlah mutations)</br>
+Sebenarnya Vuex dapat mencegah perubahan data secara langsung dengan menggunakan `strict:true`</br>
+Karena code perubahan data original terdapat di store muataions, maka coding di sisi component hanya berupa commit dan transfer argument saja</br>
+`this.$store.commit("reducePrice", 1000);` memiliki arti, lakukan mutation reducePrice dengan mengirim argument 1000</br>
+
+```
+store.js
+import Vue from "vue";
+import Vuex from "vuex";
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  strict: true,
+  state: {
+    products: [
+      { name: "Mangga", price: 20000 },
+      { name: "Semangka", price: 15000 },
+      { name: "Jambu", price: 18000 }
+    ]
+  },
+  getters: {
+    salesProduct(state) {
+      return state.products.map(p => {
+        return { name: "**" + p.name + "**", price: p.price / 2 };
+      });
+    }
+  },
+  mutations: {
+    reducePrice(state, reduceBy) {
+      state.products.forEach(p => {
+        p.price -= reduceBy;
+      });
+    }
+  }
+});
 ```
 
+```
+methods: {
+    reducePrice() {
+      this.$store.commit("reducePrice", 1000);
+    }
+  }
 ```
 
 # Vuex Tutorial #7 - Actions
