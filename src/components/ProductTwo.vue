@@ -10,11 +10,9 @@
 </template>
 <script>
 export default {
-  props: {
-    products: {
-      type: Array,
-      required: true,
-      default: []
+  computed: {
+    products() {
+      return this.$store.state.products;
     }
   }
 };

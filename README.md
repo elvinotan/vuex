@@ -141,7 +141,7 @@ src/store/store.js
 import Vue from "vue";
 import Vuex from "vuex";
 
-Vue.user(Vuex);
+Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
@@ -157,8 +157,49 @@ export const store = new Vuex.Store({
 
 # Vuex Tutorial #4 - Using Computed Properties
 
+Store yang telah kita setup pada tutorial sebelumnya, siap untuk di gunakan</br>
+import store dari file store.js dan pasang pada Vue Instance, agar dapat di gunakan di mana saja melalui this.$store</br>
+Untuk mengambil data dari store, kita menggunakan computed, dimana store root object dapat di access melalui this.$store.state...</br>
+
+```
+main.js
+import Vue from "vue";
+import App from "./App.vue";
+import { store } from "./store/store";
+
+new Vue({
+  store, // equal store: store
+  el: "#app",
+  render: h => h(App)
+});
 ```
 
+```
+ProductOne.vue
+<template>
+  <div>
+    <h1>Buah-Buahan One</h1>
+    <ul>
+      <li v-for="product in products" :key="product.name">
+        <p>{{ product.name }}, Harga Rp.{{ product.price }}</p>
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  computed: {
+    products() {
+      return this.$store.state.products;
+    }
+  }
+};
+</script>
+<style scoped>
+p {
+  color: green;
+}
+</style>
 ```
 
 # Vuex Tutorial #5 - Getters
