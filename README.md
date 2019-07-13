@@ -101,6 +101,7 @@ p {
 ```
 
 ```
+App.vue
 <template>
   <div>
     <product-one :products="products"></product-one>
