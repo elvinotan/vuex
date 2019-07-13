@@ -360,6 +360,26 @@ methods: {
 
 # Vuex Tutorial #8 - Mapping Actions & Getters
 
-```
+Anggap dalam store.js memiliki 20 getter dan 20 actions, maka untuk component yang menggunakan store ini, perlu membuat 20 computed dan 20 method</br>
+Hal ini di anggap pemborosan dan redudansi coding. Oleh sebab itu vue telah menyediakan mapping untuk getters dan actions, caranya adalah ...</br>
+Lakukan import mapGetter dan mapActions dari vuex</br>
+Lakukan sprade operator di bagian computed untuk mapGetters</br>
+Lakukan sprade operator di bagian methods untuk mapActions</br>
 
+```
+<script>
+  import { mapGetters } from "vuex";
+  import { mapActions } from "vuex";
+  export default {
+    computed: {
+      products() {
+        return this.$store.state.products;
+      },
+      ...mapGetters(["salesProduct"])
+    },
+    methods: {
+      ...mapActions(["reducePrice"])
+    }
+  };
+</script>
 ```
