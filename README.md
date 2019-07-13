@@ -36,8 +36,98 @@ npm run dev
 
 # Vuex Tutorial #2 - A Simple Vue App
 
+Pada tahap ini kita masih menggunakan tehnik/cara lama tanpa vuex</br>
+Pada kasus di bawah terdapat data array buah buahan yang terletak di bagian root App, data array ini akan di render di 2 component yang berbeda</br>
+Cara lama di lakukan dengan mem-passing array buah-buahan melalui props, dimana masing-masing component (ProductOne dan ProductTwo) menerima props tersebut dan me-rendernya</br>
+
+```
+ProductOne.vue
+<template>
+  <div>
+    <h1>Buah-Buahan One</h1>
+    <ul>
+      <li v-for="product in products" :key="product.name">
+        <p>{{ product.name }}, Harga Rp.{{ product.price }}</p>
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    products: {
+      type: Array,
+      required: true,
+      default: []
+    }
+  }
+};
+</script>
+<style scoped>
+p {
+  color: green;
+}
+</style>
 ```
 
+```
+ProductTwo.vue
+<template>
+  <div>
+    <h1>Buah-Buahan Two</h1>
+    <ul>
+      <li v-for="product in products" :key="product.name">
+        <p>{{ product.name }}, Harga Rp.{{ product.price }}</p>
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    products: {
+      type: Array,
+      required: true,
+      default: []
+    }
+  }
+};
+</script>
+<style scoped>
+p {
+  color: red;
+}
+</style>
+```
+
+```
+<template>
+  <div>
+    <product-one :products="products"></product-one>
+    <product-two :products="products"></product-two>
+  </div>
+</template>
+
+<script>
+import ProductOne from "./components/ProductOne.vue";
+import ProductTwo from "./components/ProductTwo.vue";
+export default {
+  name: "app",
+  components: {
+    "product-one": ProductOne,
+    "product-two": ProductTwo
+  },
+  data() {
+    return {
+      products: [
+        { name: "Mangga", price: 20000 },
+        { name: "Semangka", price: 15000 },
+        { name: "Jambu", price: 18000 }
+      ]
+    };
+  }
+};
+</script>
 ```
 
 # Vuex Tutorial #3 - Setting up a Central Store
