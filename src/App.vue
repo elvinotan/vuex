@@ -15,13 +15,7 @@ export default {
     "product-two": ProductTwo
   },
   data() {
-    return {
-      products: [
-        { name: "Mangga", price: 20000 },
-        { name: "Semangka", price: 15000 },
-        { name: "Jambu", price: 18000 }
-      ]
-    };
+    return {};
   }
 };
 </script>

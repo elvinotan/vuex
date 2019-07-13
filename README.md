@@ -133,7 +133,25 @@ export default {
 
 # Vuex Tutorial #3 - Setting up a Central Store
 
+Pada tahap awal, untuk menggunakan vuex, kita harus melakukan setup Store</br>
+Store adalah object placeholder, tempat menyimpan application data</br>
+
 ```
+src/store/store.js
+import Vue from "vue";
+import Vuex from "vuex";
+
+Vue.user(Vuex);
+
+export const store = new Vuex.Store({
+  state: {
+    products: [
+      { name: "Mangga", price: 20000 },
+      { name: "Semangka", price: 15000 },
+      { name: "Jambu", price: 18000 }
+    ]
+  }
+});
 
 ```
 
